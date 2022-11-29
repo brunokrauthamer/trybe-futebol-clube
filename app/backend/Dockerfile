@@ -6,9 +6,13 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY . ./
 
 EXPOSE 3001
 
-CMD ["npm", "start"]
+# RUN npm run prestart
+
+ENTRYPOINT [ "npm", "run" ]
+
+CMD ["start"]
 

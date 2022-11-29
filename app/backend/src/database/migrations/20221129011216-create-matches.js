@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -11,18 +11,26 @@ module.exports = {
       },
       home_team: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'teams',
+          key: 'id',
+        },
       },
       home_team_gols: {
         type: Sequelize.INTEGER,
       },
       away_team: {
         type: Sequelize.INTEGER,
+        references: {
+          model: 'teams',
+          key: 'id',
+        },
       },
       away_team_gols: {
         type: Sequelize.INTEGER,
       },
       in_progress: {
-        type: Sequelize.BOOL,
+        type: Sequelize.BOOLEAN,
       }
     });
   },
