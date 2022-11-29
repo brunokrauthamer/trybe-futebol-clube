@@ -16,7 +16,7 @@ module.exports = {
           key: 'id',
         },
       },
-      home_team_gols: {
+      home_team_goals: {
         type: Sequelize.INTEGER,
       },
       away_team: {
@@ -26,7 +26,7 @@ module.exports = {
           key: 'id',
         },
       },
-      away_team_gols: {
+      away_team_goals: {
         type: Sequelize.INTEGER,
       },
       in_progress: {
