@@ -8,12 +8,10 @@ export default class LoginService {
   static async getByEmail(email: string, password:string) {
     const user = await Users.findOne({ where: { email } });
     if (!user) {
-      console.log('invalid user');
       return { type: 401, message: 'Incorrect email or password', user: null };
     }
     const hash = user.dataValues.password;
     if (!bcrypt.compareSync(password, hash)) {
-      console.log('invalid password');
       return { type: 401, message: 'Incorrect email or password', user: null };
     }
     const { token, payload } = await this.generateToken(user.dataValues);
@@ -28,7 +26,15 @@ export default class LoginService {
       email: user.email,
     };
     const token = jwt.sign(payload, 'jwt_secret');
-    console.log(token);
     return { token, payload };
+  }
+
+  static validateToken(token: string) {
+    try {
+      const data = jwt.verify(token, 'jwt_secret') as IUser;
+      return { valid: true, data };
+    } catch {
+      return { valid: false };
+    }
   }
 }

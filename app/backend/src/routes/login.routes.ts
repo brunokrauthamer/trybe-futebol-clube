@@ -1,13 +1,15 @@
 import { Router } from 'express';
 import validateLoginBody from '../middlewares/login.middleware';
-import login from '../controllers/login.controller';
+import loginController from '../controllers/login.controller';
 
 const router = Router();
 
 router.post(
   '/',
   validateLoginBody,
-  login,
+  loginController.login,
 );
+
+router.get('/validate', loginController.validateLogin);
 
 export default router;
