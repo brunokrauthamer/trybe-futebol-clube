@@ -1,7 +1,7 @@
 import { Model, INTEGER, BOOLEAN } from 'sequelize';
 import db from '.';
 // import OtherModel from './OtherModel';
-import Team from './TeamModel';
+// import Team from './TeamModel';
 
 class Match extends Model {
   declare id: number;
@@ -47,7 +47,7 @@ Match.init({
   * Associations 1:N devem ficar em uma das instâncias de modelo
   * */
 
-Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teams' });
-Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teams' });
+// Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teams' });
+// Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teams' });
 
 export default Match;
