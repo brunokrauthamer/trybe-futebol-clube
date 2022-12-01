@@ -16,6 +16,7 @@ function validateLogin(req: Request, res: Response) {
   if (valid && data !== undefined) {
     return res.status(200).json({ role: data.role });
   }
+  return res.status(500).json({ message: 'Internal Error' });
 }
 
 export default { login, validateLogin };

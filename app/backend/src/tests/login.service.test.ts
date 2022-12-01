@@ -50,7 +50,7 @@ describe('Realiza os testes relacionados a requisições para a rota /login', ()
 
   it('Verifica requisição correta para a rota /login/validate', async () => {
 
-    sinon.stub(LoginService, 'validateToken').resolves({
+    sinon.stub(LoginService, 'validateToken').returns({
       valid: true,
       data: {
         id: 1,
@@ -63,9 +63,30 @@ describe('Realiza os testes relacionados a requisições para a rota /login', ()
     const response = await chai
        .request(app)
        .get('/login/validate/')
-
+    console.log(response);
     expect(response.status).to.be.equal(200);
     expect(response.body.role).to.be.equal('admin');
+
+  });
+
+  it('Verifica requisição incorreta para a rota /login/validate', async () => {
+
+    sinon.stub(LoginService, 'validateToken').returns({
+      valid: false,
+      data: {
+        id: 1,
+        username: 'Admin',
+        role: 'admin',
+        email: 'admin@admin.com',
+      }
+    });
+
+    const response = await chai
+       .request(app)
+       .get('/login/validate/')
+    console.log(response);
+    expect(response.status).to.be.equal(500);
+    expect(response.body.message).to.be.equal('Internal Error');
 
   });
   
@@ -196,6 +217,21 @@ describe('Realiza os testes relacionados a requisições para a rota /login', ()
     const response = LoginService.validateToken('token');
 
     expect(response.valid).to.be.equal(true)
+  });
+
+  it('Verifica o comportamento do método validateToken com token inválido', () => {
+    const dataMock = {
+      id: 1,
+      username: 'Admin',
+      role: 'admin',
+      email: 'admin@admin.com',
+    }
+
+    sinon.stub(jwt, 'verify').throws(new Error() as Error);
+
+    const response = LoginService.validateToken('token');
+
+    expect(response.valid).to.be.equal(false);
   });
 
 });
