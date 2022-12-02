@@ -7,7 +7,6 @@ import IUser from '../interfaces/IUser';
 export default class LoginService {
   static async getByEmail(email: string, password:string) {
     const user = await Users.findOne({ where: { email } });
-    console.log('user \n\n\n\n', user);
     if (!user) {
       return { type: 401, message: 'Incorrect email or password', user: null };
     }

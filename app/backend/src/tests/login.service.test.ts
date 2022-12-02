@@ -63,7 +63,6 @@ describe('Realiza os testes relacionados a requisições para a rota /login', ()
     const response = await chai
        .request(app)
        .get('/login/validate/')
-    console.log(response);
     expect(response.status).to.be.equal(200);
     expect(response.body.role).to.be.equal('admin');
 
@@ -84,7 +83,6 @@ describe('Realiza os testes relacionados a requisições para a rota /login', ()
     const response = await chai
        .request(app)
        .get('/login/validate/')
-    console.log(response);
     expect(response.status).to.be.equal(500);
     expect(response.body.message).to.be.equal('Internal Error');
 
