@@ -31,8 +31,26 @@ describe('Testes de Teams', () => {
       }] as TeamModel[])
 
       const response = await chai.request(app).get('/teams');
+      const array = response.body;
+      const firstTeam = array[0];
+      const { teamName } = firstTeam;
 
     expect(response.status).to.be.equal(200);
-    expect(response.body[0].teamName.to.be.equal('Corinthians'));
-  })
+    expect(teamName).to.be.equal('Corinthians');
+  });
+
+  it('Verifica se retorna a lista de times em get /teams/:id', async () => {
+    sinon.stub(TeamModel, 'findByPk').resolves(
+      { dataValues:
+      {  id: 1,
+        teamName: "Corinthians",
+      }} as TeamModel)
+
+      const response = await chai.request(app).get('/teams/1');
+      const team = response.body;
+      const name = team.teamName;
+
+    expect(response.status).to.be.equal(200);
+    expect(name).to.be.equal('Corinthians');
+  });
 })

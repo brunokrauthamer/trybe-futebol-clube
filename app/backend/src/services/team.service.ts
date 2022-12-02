@@ -6,4 +6,10 @@ export default class TeamService {
     const response = await TeamModel.findAll() as Team[];
     return { type: 200, message: response };
   }
+
+  static async getById(id: number): Promise<{ type: number, message: Team }> {
+    const response = await TeamModel.findByPk(id);
+    const data = response?.dataValues as Team;
+    return { type: 200, message: data };
+  }
 }
