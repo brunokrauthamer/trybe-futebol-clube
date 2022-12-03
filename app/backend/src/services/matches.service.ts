@@ -29,4 +29,12 @@ export default class MatchesService {
     const data = response.map((match) => match.dataValues);
     return { type: 200, message: data };
   }
+
+  static async store(match: object) {
+    const response = await MatchModel.create({
+      ...match,
+      inProgress: true,
+    });
+    return response.dataValues;
+  }
 }

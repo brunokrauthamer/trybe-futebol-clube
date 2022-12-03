@@ -11,4 +11,11 @@ export default class MatchesController {
     }
     res.status(response.type).json(response.message);
   }
+
+  static async store(req: Request, res: Response) {
+    const match = req.body;
+    console.log('match \n\n\n\n\n', match);
+    const response = await MatchesService.store(match);
+    res.status(201).json(response);
+  }
 }
