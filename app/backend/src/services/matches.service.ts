@@ -1,5 +1,5 @@
 import MatchModel from '../database/models/MatchModel';
-// import IMatch from '../interfaces/IMatch';
+import IRegisterGoal from '../interfaces/IRegisterGoal';
 import Team from '../database/models/TeamModel';
 import stringToBool from '../utils/stringToBool';
 
@@ -41,6 +41,14 @@ export default class MatchesService {
   static async finish(id: number) {
     await MatchModel.update(
       { inProgress: false },
+      { where: { id } },
+    );
+  }
+
+  static async registerGoals(id: number, body: IRegisterGoal) {
+    const { homeTeamGoals, awayTeamGoals } = body;
+    await MatchModel.update(
+      { homeTeamGoals, awayTeamGoals },
       { where: { id } },
     );
   }

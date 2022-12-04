@@ -15,4 +15,6 @@ router.post(
 );
 router.patch('/:id/finish', MatchesController.finish.bind(MatchesController));
 
+router.patch('/:id', MatchesController.registerGoal.bind(MatchesController));
+
 export default router;

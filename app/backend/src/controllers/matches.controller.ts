@@ -23,4 +23,11 @@ export default class MatchesController {
     await MatchesService.finish(id);
     res.status(200).json({ message: 'Finished' });
   }
+
+  static async registerGoal(req: Request, res: Response) {
+    const id = Number(req.params.id);
+    const { body } = req;
+    await MatchesService.registerGoals(id, body);
+    res.status(200).json(body);
+  }
 }
