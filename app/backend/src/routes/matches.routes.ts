@@ -10,5 +10,6 @@ router.post(
   authMiddleware,
   MatchesController.store.bind(MatchesController),
 );
+router.patch('/:id/finish', MatchesController.finish.bind(MatchesController));
 
 export default router;

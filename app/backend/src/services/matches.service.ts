@@ -37,4 +37,11 @@ export default class MatchesService {
     });
     return response.dataValues;
   }
+
+  static async finish(id: number) {
+    await MatchModel.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+  }
 }
