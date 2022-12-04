@@ -10,7 +10,7 @@ export default function authMiddleware(req: Request, res:Response, next: NextFun
     const data = jwt.verify(authorization, 'jwt_secret');
     req.body.user = data;
   } catch {
-    return res.status(400).json({ message: 'Invalid Token' });
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
   next();
 }

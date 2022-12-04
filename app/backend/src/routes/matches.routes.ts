@@ -10,6 +10,7 @@ router.post(
   '/',
   authMiddleware,
   MatchesMiddleware.validateDifferentTeams.bind(MatchesMiddleware),
+  MatchesMiddleware.validateTeamExists.bind(MatchesMiddleware),
   MatchesController.store.bind(MatchesController),
 );
 router.patch('/:id/finish', MatchesController.finish.bind(MatchesController));
