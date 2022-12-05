@@ -22,16 +22,7 @@ export default class LeaderboardService {
     return matchesList;
   }
 
-  static async getHome() {
-    const teamsList = await this.getTeamsList();
-
-    const matchesList = await this.getMatchesList();
-
-    matchesList.forEach((match) => {
-      const { homeTeam, homeTeamGoals, awayTeamGoals, inProgress } = match;
-      teamsList[homeTeam - 1].updatePrimaryInfo(homeTeamGoals, awayTeamGoals, inProgress);
-    });
-
+  static async getSortedResponse(teamsList: TeamStats[]) {
     const response = teamsList.map((team) => team.response());
     response.sort((teamA, teamB) => {
       if (teamA.totalPoints !== teamB.totalPoints) { return teamB.totalPoints - teamA.totalPoints; }
@@ -43,6 +34,34 @@ export default class LeaderboardService {
       }
       return teamB.goalsFavor - teamA.goalsFavor;
     });
+    return response;
+  }
+
+  static async getHome() {
+    const teamsList = await this.getTeamsList();
+
+    const matchesList = await this.getMatchesList();
+
+    matchesList.forEach((match) => {
+      const { homeTeam, homeTeamGoals, awayTeamGoals, inProgress } = match;
+      teamsList[homeTeam - 1].updatePrimaryInfo(homeTeamGoals, awayTeamGoals, inProgress);
+    });
+
+    const response = await this.getSortedResponse(teamsList);
+    return response;
+  }
+
+  static async getAway() {
+    const teamsList = await this.getTeamsList();
+
+    const matchesList = await this.getMatchesList();
+
+    matchesList.forEach((match) => {
+      const { awayTeam, awayTeamGoals, homeTeamGoals, inProgress } = match;
+      teamsList[awayTeam - 1].updatePrimaryInfo(awayTeamGoals, homeTeamGoals, inProgress);
+    });
+
+    const response = await this.getSortedResponse(teamsList);
     return response;
   }
 }
