@@ -64,4 +64,19 @@ export default class LeaderboardService {
     const response = await this.getSortedResponse(teamsList);
     return response;
   }
+
+  static async getAll() {
+    const teamsList = await this.getTeamsList();
+
+    const matchesList = await this.getMatchesList();
+
+    matchesList.forEach((match) => {
+      const { homeTeam, homeTeamGoals, awayTeam, awayTeamGoals, inProgress } = match;
+      teamsList[homeTeam - 1].updatePrimaryInfo(homeTeamGoals, awayTeamGoals, inProgress);
+      teamsList[awayTeam - 1].updatePrimaryInfo(awayTeamGoals, homeTeamGoals, inProgress);
+    });
+
+    const response = await this.getSortedResponse(teamsList);
+    return response;
+  }
 }
