@@ -19,15 +19,17 @@ export default class TeamStats {
     this._goalsOwn = 0;
   }
 
-  updatePrimaryInfo(goalsFavor: number, goalsOwn: number): void {
-    this._goalsFavor += goalsFavor;
-    this._goalsOwn += goalsOwn;
-    if (goalsFavor > goalsOwn) {
-      this._totalVictories += 1;
-    } else if (goalsFavor === goalsOwn) {
-      this._totalDraws += 1;
-    } else {
-      this._totalLosses += 1;
+  updatePrimaryInfo(goalsFavor: number, goalsOwn: number, inProgress: boolean): void {
+    if (!inProgress) {
+      this._goalsFavor += goalsFavor;
+      this._goalsOwn += goalsOwn;
+      if (goalsFavor > goalsOwn) {
+        this._totalVictories += 1;
+      } else if (goalsFavor === goalsOwn) {
+        this._totalDraws += 1;
+      } else {
+        this._totalLosses += 1;
+      }
     }
   }
 
