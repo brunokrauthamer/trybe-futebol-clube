@@ -39,7 +39,7 @@ This project was developed during the Trybe development course. The project is a
   },
   ...
 ]`
-- Endpoint GET /teams/:id:
+- Endpoint GET /teams/:id
   - The status response should be 200, with the following object format:
   `{
   "id": 4,
