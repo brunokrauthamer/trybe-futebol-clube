@@ -4,7 +4,7 @@
 This project was developed during the Trybe development course. The project is an informative website about a soccer championship, which contains both standings and match tables. The information is provided by the front-end and stored in the database by the back-end. I developed all the back-end and database, while the front-end was developed by the Trybe team.
 
 ## Concepts:
-- Database modeling;
+- Database modeling; 
 - RESTfull API;
 - Object Oriented Programing (OOP) paradigm;
 - Test-Driven Development (TDD);
@@ -39,7 +39,9 @@ This project was developed during the Trybe development course. The project is a
 All files inside (`app/backend/src`) folder were developed by me. The others were developed by Trybe team.
 
 ## How to run the project:
-1. Git clone this repository.
-2. Enter the folder.
-3. Run `npm install`.  
+1. Make sure you have docker installed with version 1.29 or higher.
+2. Git clone this repository.
+3. Enter the folder.
+4. Run `npm run compose:up:dev`.
+5. You are ready to navegate at `http://localhost:3000/`.
   
