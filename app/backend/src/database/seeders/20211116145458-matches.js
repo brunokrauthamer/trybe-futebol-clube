@@ -266,7 +266,7 @@ module.exports = {
           home_team: 14,
           home_team_goals: 2,
           away_team: 4,
-          away_team_goals: 1,
+          away_team_goals: 3,
           in_progress: false,
         },
         {
