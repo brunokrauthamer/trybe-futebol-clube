@@ -1,10 +1,10 @@
 # :soccer: Trybe Football Club :soccer:
 
 ## User Experience:
-![](tfc_user.gif)
+![](tfc_user-opt64.gif)
 
 ## Admin Experience:
-![](tfc_admin.gif)
+![](tfc_admin-opt64.gif)
 
 ## About:
 This project was developed during the Trybe development course. The project is an informative website about a soccer championship that contains both standings and match tables. The front-end provides the information which is then sent to the back-end through an API, and subsequently stored in the database. I was responsible for developing the entire back-end and database, while the front-end was developed by the Trybe team.
