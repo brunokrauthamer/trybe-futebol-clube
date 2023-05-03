@@ -182,5 +182,11 @@ All files inside (`app/backend/src`) folder were developed by me. The others wer
 2. Git clone this repository.
 3. Enter the folder.
 4. Run `npm run compose:up:dev`.
-5. You are ready to navegate at `http://localhost:3000/`.
+5. You are ready to navigate at `http://localhost:3000/`.
+6. Try the user view.
+    login: user@user.com;
+    password: secret_user
+7. Try the admin view.
+    login: admin@admin.com;
+    password: secret_admin
   
